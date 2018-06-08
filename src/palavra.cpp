@@ -1,5 +1,7 @@
 #include "palavra.h"
 #include <iostream>
+#include <iomanip>
+using std::setw;
 Palavra::Palavra()
 {
 	id_bloco = 0;
@@ -14,17 +16,18 @@ Palavra::Palavra(int id_bloco, int endereco, int conteudo)
 	this->conteudo = conteudo;
 }
 
-bool Palavra::setId_bloco(int id_bloco)
+void Palavra::setId_bloco(int id_bloco)
 {
 	this->id_bloco = id_bloco;
+
 }
 
-bool Palavra::setEndereco(int endereco)
+void Palavra::setEndereco(int endereco)
 {
 	this->endereco = endereco;
 }
 
-bool Palavra::setConteudo(int conteudo)
+void Palavra::setConteudo(int conteudo)
 {
 	this->conteudo = conteudo;
 }
@@ -47,13 +50,13 @@ int Palavra::getConteudo()
 std::ostringstream Palavra::printPalavra() const
 {	
 	std::ostringstream linha;
-	linha << id_bloco << " - " << endereco << " - " << conteudo << std::endl;
+	linha << setw(3) << id_bloco  <<"-" <<  setw(3) << endereco << " - " << setw(3) << conteudo << std::endl;
 	return linha;
 }
 
 std::ostream& operator<<(std::ostream &o, Palavra const &p)
 {
-	o << p.id_bloco << " - " << p.endereco << " - " << p.conteudo << std::endl;
+	o  << p.id_bloco << " - " << setw(3) << p.endereco << " - " << setw(3) <<p.conteudo << std::endl;
 	return o;
 }
 

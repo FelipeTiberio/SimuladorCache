@@ -5,12 +5,12 @@ Linha::Linha(int size):Bloco(size)
 {
 	this->vazia = true;
 }
-Linha::~Linha(){};
+Linha::~Linha(){}
 
 std::ostream& Linha::print(ostream& o)
 {
 	/* Entrará nesse laço caso a cache seja gravada pelomenos uma vez*/
-	int i = 0;
+	//int i = 0;
 	if(vazia == false)
 	{
 		for(auto index : this->palavra)
@@ -25,7 +25,7 @@ std::ostream& Linha::print(ostream& o)
 	/* Cache  virgem entra aqui */
 	for(auto index : this->palavra)
 	{
-		o << "x-x-x\n";
+		o << "x - x - x\n";
 	}
 		return o;
 }
