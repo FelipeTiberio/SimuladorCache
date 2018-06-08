@@ -51,4 +51,10 @@ std::ostringstream Palavra::printPalavra() const
 	return linha;
 }
 
+std::ostream& operator<<(std::ostream &o, Palavra const &p)
+{
+	o << p.id_bloco << " - " << p.endereco << " - " << p.conteudo << std::endl;
+	return o;
+}
+
 Palavra::~Palavra(){}

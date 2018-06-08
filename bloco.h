@@ -5,7 +5,6 @@
 using std::vector;
 #include <memory>
 #include <iterator>
-
 /**@details A classe bloco é uma abstração de  um bloco de momória de uma computador,
 * cada bloco possui uma tag id_bloco, um endereco e uma vecto<Palavra>*/
 class Bloco
@@ -30,16 +29,21 @@ public:
 	Bloco();
 	Bloco(int size);
 	virtual ~Bloco();
-	/**@brief o método write escreve uma palavra em um bloco,@param é necessário passar um id para o vector<Palavra> do Bloco,
+	/**@breif o método write escreve uma palavra em um bloco,@param é necessário passar um id para o vector<Palavra> do Bloco,
 	* e o conteudo que será armazenado. */
 	bool write( int id_palavra, int content);
 	/**@details Uma sobrecarga para o método write,@param recebe apenas o conteudo, armazena o dado de forma circula no vector<Palavra>*/
 	bool write(int content);
-	/**@brief retorna o tomando do bloco, i.e., a quantidade de palavras em um bloco */
+	/**@breif retorna o tomando do bloco, i.e., a quantidade de palavras em um bloco */
 	int  size();
-	
-	vector<std::shared_ptr<Palavra>>::iterator getPalavra();	
-
-	//friend std::ostream& operator<<(std::ostream &o, Bloco const &d);
+	/**@return Retorna um apontado para o primeiro endereço do vector Palavra. */
+	vector<std::shared_ptr<Palavra>>::iterator getPalavra();
+	/**@details A sobrecarga do operado << retorna um stream de saída 
+	*  com a formatação padrão para a impresão de um bloco, para isso,
+	*  o método utiliza o método this->print().*/
+	friend std::ostream& operator<<(std::ostream &o, Bloco  &d);
+	/**@details métedo retorna um stream de saída com todos as Palvras 
+	*  guardadas no bloco*/
+	virtual std::ostream& print(std::ostream&);
 };
 #endif

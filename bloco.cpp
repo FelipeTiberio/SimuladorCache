@@ -42,9 +42,23 @@ int Bloco::size()
 {
 	return m_size;
 }
+
 vector<std::shared_ptr<Palavra>>::iterator Bloco::getPalavra()
 {
 	return this->palavra.begin();
+}
+
+
+std::ostream& operator<<(std::ostream &o, Bloco  &b)
+{
+	return b.print(o);
+}
+
+std::ostream& Bloco::print(std::ostream& o)
+{
+	for(auto index : palavra)
+		o << (*index);
+	return o;
 }
 
 

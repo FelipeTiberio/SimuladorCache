@@ -2,15 +2,20 @@
 #define MEMORIA_H
 #include "bloco.h"
 #include <vector>
-using std::vecot;
+#include <memory>
+using std::vector;
+using std::shared_ptr;
 class Memoria
 {
 private:
-	int n_blocos;
-	vecot<Bloco> m_blocos;
+	int num_blocos;
+	int tamanho_bloco;
+	vector<shared_ptr<Bloco>> vetorBlocos;
 public:
-	
-	Memoria(int n_blocos);
+	/**@details Para construir uma memoria apenas é necessário passar o número de blocos 
+	*  que ela terá. No momento que uma memória for construída todos os seus blocos 
+	*  já estaram preechidos com valores no compo conteudo de forma aleátoria.*/
+	Memoria(int n_blocos, int tamanho_bloco);
 	~Memoria();
 	void showMemoria();
 	

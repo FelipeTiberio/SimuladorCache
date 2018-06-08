@@ -27,6 +27,8 @@ public:
 	int getConteudo();
 	/**@return O método retorna a formatação padrão de impressão de uma palvra */
 	std::ostringstream printPalavra() const;
+
+	friend std::ostream& operator<<(std::ostream &o, Palavra const &d);
 };
 
 
