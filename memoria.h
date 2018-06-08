@@ -17,6 +17,7 @@ public:
 	*  já estaram preechidos com valores no compo conteudo de forma aleátoria.*/
 	Memoria(int n_blocos, int tamanho_bloco);
 	~Memoria();
+	/*@breif Impreme na tela a status atual da memória o */
 	void showMemoria();
 	
 };

@@ -31,6 +31,8 @@ bool Cache::writeInCache(int id_linha, int content)
 
 void Cache::showCache()
 {	
+	cout << "CACHE L1 \n";
+	cout << "Linha-Bloco-Endereço-Conteudo \n";
 	for(auto bloco : linhas)
 		cout << (*bloco);
 }	

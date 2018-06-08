@@ -14,11 +14,12 @@ private:
 	/**@details O Atributo estático endereço inicia-se a sua contagem de 0 e irá até ((n*k)-1),
 	* em que n é igual a: numero de blocos ná memoria, e k é igual a: número de palavras por bloco*/
 	static int endereco;
-protected:
 	/**@details o atributo id_bloco está declado como static porque os blocos serão listados
 	* na memória de forma crescente conforme novos instanciamentos , de arcordo com a configuração do arquivo
 	*, assim, comforme um novo bloco é criado id_bloco é inclementado em 1. */
 	static int id_bloco;
+protected:
+	
 	int m_size ;
 	vector<std::shared_ptr<Palavra>> palavra;
 	/*@details O atributo id circular é usado quando usa-se o método write(int), assim 

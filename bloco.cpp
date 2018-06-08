@@ -22,7 +22,6 @@ Bloco::Bloco(int size)
 }
 
 Bloco::Bloco(){}
-
 Bloco::~Bloco(){}
 
 bool Bloco::write(int id_palavra, int content)

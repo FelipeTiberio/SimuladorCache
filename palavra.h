@@ -17,7 +17,7 @@ public:
 	Palavra();
 	Palavra(int id_bloco, int endereco, int conteudo );
 	~Palavra();
-
+	
 	bool setId_bloco(int id_bloco);
 	bool setEndereco(int endereco);
 	bool setConteudo(int conteudo);
