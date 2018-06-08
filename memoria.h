@@ -12,6 +12,7 @@ public:
 	
 	Memoria(int n_blocos);
 	~Memoria();
+	void showMemoria();
 	
 };
 
