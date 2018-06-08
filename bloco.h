@@ -37,6 +37,7 @@ public:
 	bool write(int content);
 	/**@brief retorna o tomando do bloco, i.e., a quantidade de palavras em um bloco */
 	int  size();
+	
 	vector<std::shared_ptr<Palavra>>::iterator getPalavra();	
 
 	//friend std::ostream& operator<<(std::ostream &o, Bloco const &d);

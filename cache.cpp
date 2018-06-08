@@ -30,6 +30,15 @@ bool Cache::writeInCache(int id_linha, int content)
 }
 
 void Cache::showCache()
-{
-	cout << "Linha –Bloco-Endereço –Conteúdo \n"
+{	
+	/*@TODO para imprementar isso preciso sobrecarregar o operador de << para retornar Linha e Bloco
+	cout << "Linha –Bloco-Endereço –Conteúdo \n";
+	if(!vazia)
+	{
+		for(int i = 0 ; i < num_linhas ; i++)
+		{
+
+		}
+	}
+	*/
 }
