@@ -1,0 +1,20 @@
+Lista de implementação e mudanças desde 9 de junho de 2018.
+
+1. Implementação dos tipos de mapemamentos: []
+	-> Direto [x]
+	-> Totalmente associativo []
+	-> Parcialmente associativo []
+
+2. Número do conjunto [](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
+
+3. Políticas de substituições []
+	-> Aleatório []
+	-> FIFO []
+	-> LFI  []
+
+4. Políticas de escrita []
+	-> write-back []
+	-> write-through []
+
+5. Uma classe sistema que gerenciará todos os itens acima, assim a implementação 
+ não precisará está de forma confusa e solta no main.[]
