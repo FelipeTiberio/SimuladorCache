@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
 	Memoria MemoriaPrincipal(NumeroBlocosMemoria,tamanhoDoBloco);
 	/*Teste da memória cache, passando como parâmetro 
 	número de linha na cache e o tamanho de cada linha*/
-	Cache cache_l1(NumeroLinhasCache,tamanhoDoBloco);
+	Cache cache_l1(NumeroLinhasCache,tamanhoDoBloco, numeroConjunto);
 	cache_l1.showCache();
 	MemoriaPrincipal.showMemoria();
 	cache_l1.mapeamentoDireto(MemoriaPrincipal.vetorBlocos[0]);

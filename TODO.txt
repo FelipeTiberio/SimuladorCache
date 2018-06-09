@@ -1,8 +1,9 @@
 Lista de implementação e mudanças desde 9 de junho de 2018.
 
+ 	COISAS QUE TENHO DE FAZER :
 1. Implementação dos tipos de mapemamentos: []
 	-> Direto [x]
-	-> Totalmente associativo []
+	-> Totalmente associativo [x]
 	-> Parcialmente associativo []
 
 2. Número do conjunto [](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
@@ -18,3 +19,7 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 
 5. Uma classe sistema que gerenciará todos os itens acima, assim a implementação 
  não precisará está de forma confusa e solta no main.[]
+
+	COISAS QUE FAREI CASO EXISTA TEMPO :
+1. No caso de im política de substituíção por conjunto 
+   imprime um marcador de onde começa e termina cada conjunto [].

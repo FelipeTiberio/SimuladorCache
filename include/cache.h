@@ -20,9 +20,11 @@ private:
 	bool vazia;
 	/**@breif id_cirular é usando para preenche a cache no mapeamento associativo */
 	int id_circula;
+	/**@breif Quantidade de conjuntos na cache, apenas é usando no mapeamento por conjunto */
+	int num_conjunto;
 public:
 	/**@breif Na construção de um cache é necessário passar  a quanditade de linhas e quantidade de palavras por linha.*/
-	Cache(int n_linhas, int size_linha);
+	Cache(int n_linhas, int size_linha, int num_conjunto);
 	~Cache();
 	/**@details O método recebe o id da linha/bloco que guardará o conteudo
 	*  Esse método funciona de forma circular, i.e, uma linha tem n palavras
@@ -39,6 +41,10 @@ public:
 	/**@details Sempre armazena o bloco na próxima linha disponivel. no cenário em que a memória
 	* estiver cheia será utilizado alguma das políticas de substituição.*/
 	void mapeamentoToAssociativo(shared_ptr<Bloco>);
+	/**@details Divide a cache em conjuntos, cada bloco ca memória é associado a um único 
+	* conjunto. A quantidade de linhas por conjunto é dado por: 
+	* (|num_linha|)/(|nun_conjunto|) = quantidade de linha por conjunto */
+	void mapeamentoPorSet(shared_ptr<Bloco>);
 };
 
 
