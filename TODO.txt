@@ -6,8 +6,8 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 	-> Totalmente associativo [x]
 	-> Parcialmente associativo []
 
-2. Número do conjunto [x](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
-
+2. Número do conjunto [](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
+	-> Cada bloco na memória tenho um atributo dizendo qual é o seu set []
 3. Políticas de substituições []
 	-> Aleatório []
 	-> FIFO []
