@@ -39,7 +39,8 @@ void Cache::showCache()
 
 void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha)
 {
-
-	int possicao = (NovaLinha->getNumeroBloco() % num_linhas); 
-
+	int possicao = (NovaLinha->palavra[0]->getId_bloco() % num_linhas); 
+	/*Na linha abaixo irei usar um construtor cópia */
+	this->linhas[possicao] = std::make_shared<Linha>(NovaLinha);
+	this->vazia = false;
 }

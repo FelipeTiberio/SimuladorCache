@@ -7,10 +7,11 @@ using std::vector;
 using std::shared_ptr;
 class Memoria
 {
+public:
+	vector<shared_ptr<Bloco>> vetorBlocos;
 private:
 	int num_blocos;
 	int tamanho_bloco;
-	vector<shared_ptr<Bloco>> vetorBlocos;
 public:
 	/**@details Para construir uma memoria apenas é necessário passar o número de blocos 
 	*  que ela terá. No momento que uma memória for construída todos os seus blocos 

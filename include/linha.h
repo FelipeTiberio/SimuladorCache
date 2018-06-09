@@ -14,6 +14,7 @@ private:
 	bool vazia;	
 public:
 	Linha(int size);
+	Linha(std::shared_ptr<Bloco>);
 	virtual ~Linha();
 	/**@details Método utilizado para imprimir uma linha utilizado o operador <<*/
 	virtual std::ostream& print(ostream& o);

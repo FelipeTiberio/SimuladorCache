@@ -18,10 +18,11 @@ private:
 	* na memória de forma crescente conforme novos instanciamentos , de arcordo com a configuração do arquivo
 	*, assim, comforme um novo bloco é criado id_bloco é inclementado em 1. */
 	static int id_bloco;
+public:
+	vector<std::shared_ptr<Palavra>> palavra;
 protected:
 	
 	int m_size ;
-	vector<std::shared_ptr<Palavra>> palavra;
 	/*@details O atributo id circular é usado quando usa-se o método write(int), assim 
 	* os dodos são inseridos de forma circular no vetor palavra , i.e., palavra[id_circula % m_size]  */
 	int id_circular;
@@ -49,5 +50,6 @@ public:
 	/**@return Retorna qual é p número do bloco*/
 	virtual int getNumeroBloco();
 	virtual int getM_size();
+
 };
 #endif

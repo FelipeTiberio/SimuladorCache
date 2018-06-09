@@ -6,8 +6,15 @@ Linha::Linha(int size):Bloco(size)
 {
 	this->vazia = true;
 }
-
-
+Linha::Linha(std::shared_ptr<Bloco> b):Bloco( b->getM_size())
+{
+	int size = b->getM_size();
+	for(int i = 0; i < size; i++ )
+	{
+		this->palavra[i] = b->palavra[i];
+	}
+	this->vazia = false;
+}
 Linha::~Linha(){}
 
 std::ostream& Linha::print(ostream& o)
@@ -24,7 +31,6 @@ std::ostream& Linha::print(ostream& o)
 		}
 		return o;
 	}
-
 	/* Cache  virgem entra aqui */
 	for(auto index : this->palavra)
 	{

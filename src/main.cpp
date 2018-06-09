@@ -46,6 +46,9 @@ int main(int argc, char const *argv[])
 	Cache cache_l1(NumeroLinhasCache,tamanhoDoBloco);
 	cache_l1.showCache();
 	MemoriaPrincipal.showMemoria();
+	cache_l1.mapeamentoDireto(MemoriaPrincipal.vetorBlocos[0]);
+	cache_l1.showCache();
+	MemoriaPrincipal.showMemoria();
 
 	return 0;
 }
