@@ -16,8 +16,10 @@ private:
 	vector<std::shared_ptr<Linha>> linhas;
 	/**@breif A quantidade de palavras que haverá em uma linha */
 	int size_linha;
-	/**@param o atributo diz se em algum momento a cache foi carregada */
+	/**@breif o atributo diz se em algum momento a cache foi carregada */
 	bool vazia;
+	/**@breif id_cirular é usando para preenche a cache no mapeamento associativo */
+	int id_circula;
 public:
 	/**@breif Na construção de um cache é necessário passar  a quanditade de linhas e quantidade de palavras por linha.*/
 	Cache(int n_linhas, int size_linha);
@@ -32,8 +34,11 @@ public:
 	void showCache();
 	/**@return retorna verdadeiro se a memória estiver vazia, caso contrário, retorna falso */
 	bool empty();
-	/**@details O k-ésimo bloco será armazenado na posição (k % n_linha) no vector de Linha */
+	/**@details O k-ésimo bloco será armazenado na posição (k % |num_linha|) no vector de Linha */
 	void mapeamentoDireto(shared_ptr<Bloco>);
+	/**@details Sempre armazena o bloco na próxima linha disponivel. no cenário em que a memória
+	* estiver cheia será utilizado alguma das políticas de substituição.*/
+	void mapeamentoToAssociativo(shared_ptr<Bloco>);
 };
 
 

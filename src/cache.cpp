@@ -17,6 +17,7 @@ Cache::Cache(int num_linhas, int size_linha)
 	{
 		linhas[i] = std::make_shared<Linha>(size_linha); 
 	}
+	this->id_circula = 0;
 	this->vazia = true;
 }
 
@@ -43,4 +44,15 @@ void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha)
 	/*Na linha abaixo irei usar um construtor cópia */
 	this->linhas[possicao] = std::make_shared<Linha>(NovaLinha);
 	this->vazia = false;
+	id_circula++;
+}
+
+void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
+{
+	int i = id_circula % num_linhas;
+	id_circula++;
+	/*Na linha abaixo irei usar um construtor cópia */
+	this->linhas[i] = std::make_shared<Linha>(NovaLinha);
+	this->vazia = false;
+
 }
