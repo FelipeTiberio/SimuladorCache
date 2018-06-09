@@ -1,6 +1,7 @@
 #ifndef LINHA_H
 #define LINHA_H
 #include <iostream>
+#include <memory>
 using std::ostream;
 #include "bloco.h"
 

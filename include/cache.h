@@ -1,9 +1,11 @@
 #ifndef CACHE_H
 #define CACHE_H
 #include "linha.h"
+#include "memoria.h"
 #include <vector>
 #include <memory>
 using std::vector;
+using std::make_shared;
 
 class Cache
 {
@@ -30,8 +32,8 @@ public:
 	void showCache();
 	/**@return retorna verdadeiro se a memória estiver vazia, caso contrário, retorna falso */
 	bool empty();
-
-	
+	/**@details O k-ésimo bloco será armazenado na posição (k % n_linha) no vector de Linha */
+	void mapeamentoDireto(shared_ptr<Bloco>);
 };
 
 

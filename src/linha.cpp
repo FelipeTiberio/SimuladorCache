@@ -1,10 +1,13 @@
 #include "linha.h"
 #include "bloco.h"
+#include <memory>
 
 Linha::Linha(int size):Bloco(size)
 {
 	this->vazia = true;
 }
+
+
 Linha::~Linha(){}
 
 std::ostream& Linha::print(ostream& o)

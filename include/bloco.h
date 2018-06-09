@@ -46,5 +46,8 @@ public:
 	/**@details métedo retorna um stream de saída com todos as Palvras 
 	*  guardadas no bloco*/
 	virtual std::ostream& print(std::ostream&);
+	/**@return Retorna qual é p número do bloco*/
+	virtual int getNumeroBloco();
+	virtual int getM_size();
 };
 #endif

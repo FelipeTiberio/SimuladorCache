@@ -60,4 +60,13 @@ std::ostream& Bloco::print(std::ostream& o)
 	return o;
 }
 
+int Bloco::getNumeroBloco()
+{
+	return this->id_bloco;
+}
+int Bloco::getM_size()
+{
+	return this->m_size;
+}
+
 

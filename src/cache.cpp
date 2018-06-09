@@ -36,3 +36,10 @@ void Cache::showCache()
 	for(auto bloco : linhas)
 		cout << (*bloco);
 }	
+
+void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha)
+{
+
+	int possicao = (NovaLinha->getNumeroBloco() % num_linhas); 
+
+}
