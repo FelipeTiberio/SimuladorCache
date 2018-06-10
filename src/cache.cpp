@@ -56,14 +56,26 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 }
 void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 {
-	/*@TODO é melhor colocar um atributo em cada bloco 	que endentifica qual é o seu conjunto */
-	/*
-	int LinhasInSet = (num_linhas/num_conjunto); /*Quantidade de linhas em um conjunto */
-	/*Essa é a regra que pensei ,primeiro descubro em que conjunto colocar */
-	//int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
-	//for(int i = (LinhasInSet-1); i <=0 ; i--)
-	//{
 
-	//}*/
+	int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
+	int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
+	int colocarNalinha = colocarNoSet + colocarNoSet;
+
+	for(int i = (colocarNalinha); i < num_linhas ; i++)
+	{
+		/*Sem usar política de substituíção, colocar o bloco na primeira linha do set que estiver vaga */
+		if(this->linhas[i]->empty())
+		{
+			this->linhas[i] = std::make_shared<Linha>(NovaLinha);
+			return;
+		}
+		/*Será verdade quando percorrer todo o set e não encontrar linhas vázias, então colocar na última linha */
+		else if( i == (colocarNoSet + LinhasInSet -1) )
+		{
+			this->linhas[i] = std::make_shared<Linha>(NovaLinha);
+		}
+
+
+	}
 	
 }

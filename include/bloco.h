@@ -18,6 +18,7 @@ private:
 	* na memória de forma crescente conforme novos instanciamentos , de arcordo com a configuração do arquivo
 	*, assim, comforme um novo bloco é criado id_bloco é inclementado em 1. */
 	static int id_bloco;
+	
 public:
 	vector<std::shared_ptr<Palavra>> palavra;
 protected:
