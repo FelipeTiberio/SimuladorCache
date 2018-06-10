@@ -49,6 +49,7 @@ void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha)
 }
 void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 {
+	
 	int i = id_circula % num_linhas;
 	id_circula++;
 	/*Na linha abaixo irei usar um construtor cópia */
@@ -93,25 +94,3 @@ bool Cache::cacheFull()
 	return true;
 }
 
-void Cache::readFromMemory( int endereco )
-{	
-	/* gerador de número aleátorios */
-	std::random_device rd;
-	std::default_random_engine gen(rd());
-	std::uniform_int_distribution<> dis(0 ,num_linhas);
-	/*@TODO Lembra de tratar em sistema se o endereço passado para ser lido existe na memória */
-	/*
-	int Ler_Bloco;
-	for( auto line : linhas)
-	{
-		if( i->endereco == endereco)
-		{
-			Ler_Bloco = i->endereco;
-		}
-	}
-
-	if(politica_sub = 1)
-	{
-			//this->linhas[std::round(dis(gen))] = std::make_shared<Linha>();
-	}*/
-}

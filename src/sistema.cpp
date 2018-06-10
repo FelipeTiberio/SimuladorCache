@@ -122,14 +122,33 @@ void Sistema::mapeamentoDireto(int endereco)
 	exit(1);
 }
 
+
 void Sistema::mapeamentoTassociativo( int endereco )
 {
-	/*TODO*/
+
+	std::shared_ptr<Bloco> aux = std::make_shared<Bloco>(tam_bloco, endereco);
+	for(int i = 0 ; i < tam_memoria ; i++)
+	{
+		if((*aux) == (*(memoriaPrincipal->vetorBlocos[i])))
+		{
+
+			cache_l1->mapeamentoToAssociativo(memoriaPrincipal->vetorBlocos[i]);
+			return;
+		}
+	}
 }
 
 void Sistema::mapeamentoPorSet( int endereco)
 {
-	/*TODO*/
+	std::shared_ptr<Bloco> aux = std::make_shared<Bloco>(tam_bloco, endereco);
+	for(int i = 0 ; i < tam_memoria ; i++)
+	{
+		if((*aux) == (*(memoriaPrincipal->vetorBlocos[i])))
+		{
+			cache_l1->mapeamentoPorSet(memoriaPrincipal->vetorBlocos[i]);
+			return;
+		}
+	}
 }
 
 void Sistema::write (int content )
@@ -139,7 +158,7 @@ void Sistema::write (int content )
 
 void  Sistema::executar(char * comando, int endereco)
 {
-	if(strcmp(comando, "quit")==0)
+	if(strcmp(comando, "quit")==0 || strcmp(comando, "q") == 0 )
 		return;
 	if(strcmp(comando, "read")==0){
 		this->readFromMemory(endereco);
@@ -151,6 +170,14 @@ void  Sistema::executar(char * comando, int endereco)
 	}
 	if(strcmp(comando, "show")==0){
 		this->show();
+		return;
+	}
+	if(strcmp(comando, "full")==0){
+		if(cache_l1->cacheFull()){
+			cout << "A cache está cheia \n";
+			return;
+		}
+		cout << "A cache ainda não está completa \n";
 		return;
 	}
 	std::cout << " Comando não encontrado \n";

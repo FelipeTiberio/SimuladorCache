@@ -36,6 +36,7 @@ private:
 	void mapeamentoDireto(int endrec);
 	void mapeamentoTassociativo(int endrec);
 	void mapeamentoPorSet(int endrec);
+
 };
 
 

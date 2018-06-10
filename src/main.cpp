@@ -78,11 +78,10 @@ int main(int argc, char const *argv[])
     	i++;
 	}
 	sistema.executar(argv2[0],atoi(argv2[1]));
-	std::cout << argv2[0] << " " << atoi(argv2[1]) << "\n";
 
 	}while( !(strcmp(argv2[0], "q") == 0 ) );
 
-	cout << "*******FIM********\n";
-	exit(1); //@TODO remover isso deletar todos os ponteiros 
+	cout << "*******FIM DA SIMULAÇÃO********\n";
+	//exit(1); //@TODO remover isso deletar todos os ponteiros 
 	return 0;
 }

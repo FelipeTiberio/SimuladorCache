@@ -52,8 +52,6 @@ public:
 	void mapeamentoPorSet(shared_ptr<Bloco>);
 	/**@return apenas retorna verdadeiro quando a cache estiver cheia, caso contrário, será false  */
 	bool cacheFull();
-	/**@breif Método usando para carregar blocos da memória na cache, recebe um endereço
-	*  carrega na memória o bloco corrrespondente ao endereço.*/
-	void readFromMemory(int endereco);
+	
 };
 #endif
