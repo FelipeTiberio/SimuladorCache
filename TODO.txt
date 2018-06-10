@@ -1,12 +1,12 @@
 Lista de implementação e mudanças desde 9 de junho de 2018.
 
  	COISAS QUE TENHO DE FAZER :
-1. Implementação dos tipos de mapemamentos: []
+1. Implementação dos tipos de mapemamentos: [x]
 	-> Direto [x]
 	-> Totalmente associativo [x]
-	-> Parcialmente associativo []
+	-> Parcialmente associativo [x]
 
-2. Número do conjunto [](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
+2. Número do conjunto [x](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
 	-> Cada bloco na memória tenho um atributo dizendo qual é o seu set []
 3. Políticas de substituições []
 	-> Aleatório []
@@ -18,7 +18,7 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 	-> write-through []
 
 5. Uma classe sistema que gerenciará todos os itens acima, assim a implementação 
- não precisará está de forma confusa e solta no main.[]
+ não precisará está de forma confusa e solta no main.[x]
 
 	COISAS QUE FAREI CASO EXISTA TEMPO :
 1. No caso de im política de substituíção por conjunto 
