@@ -1,6 +1,7 @@
 #include "linha.h"
 #include "bloco.h"
 #include <memory>
+#include <random>
 
 Linha::Linha(int size):Bloco(size)
 {

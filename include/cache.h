@@ -24,9 +24,12 @@ private:
 	int num_conjunto;
 	/**@breif o atributo será verdadeiro quando a cache estiver cheia, caso contrário, será vázia */
 	bool cheia;
+	/**#breif Tipo de política de substituição*/
+	int politica_sub;
 public:
-	/**@breif Na construção de um cache é necessário passar  a quanditade de linhas e quantidade de palavras por linha.*/
-	Cache(int n_linhas, int size_linha, int num_conjunto);
+	/**@breif Na construção de um cache é necessário passar  a quanditade de linhas e quantidade de palavras por linha.
+	*  quantidade de conjunto e a política de substituíção */
+	Cache(int n_linhas, int size_linha, int num_conjunto, int politica_sub);
 	~Cache();
 	/**@details O método recebe o id da linha/bloco que guardará o conteudo
 	*  Esse método funciona de forma circular, i.e, uma linha tem n palavras
@@ -49,7 +52,8 @@ public:
 	void mapeamentoPorSet(shared_ptr<Bloco>);
 	/**@return apenas retorna verdadeiro quando a cache estiver cheia, caso contrário, será false  */
 	bool cacheFull();
+	/**@breif Método usando para carregar blocos da memória na cache, recebe um endereço
+	*  carrega na memória o bloco corrrespondente ao endereço.*/
+	void readFromMemory(int endereco);
 };
-
-
 #endif

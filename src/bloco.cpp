@@ -68,5 +68,9 @@ int Bloco::getM_size()
 {
 	return this->m_size;
 }
+int Bloco::getEndereco()
+{
+	return this->endereco;
+}
 
 

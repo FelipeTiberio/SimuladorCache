@@ -40,4 +40,5 @@ void Memoria::showMemoria()
 		cout << "MEMÓRIA PRINCIPAL\n";
 		for(auto bloco : vetorBlocos)
 			cout << (*bloco);
+		cout << endl;
 }

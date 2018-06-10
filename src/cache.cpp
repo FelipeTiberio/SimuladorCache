@@ -1,11 +1,12 @@
 #include "cache.h"
 #include <vector>
 #include <memory>
+#include <random>
 #include <iostream>
 using std::cout;
 using std::endl;
 
-Cache::Cache(int num_linhas, int size_linha, int num_conjunto)
+Cache::Cache(int num_linhas, int size_linha, int num_conjunto, int politica_sub)
 {
 	this->num_linhas = num_linhas;
 	this->size_linha = size_linha;
@@ -19,6 +20,7 @@ Cache::Cache(int num_linhas, int size_linha, int num_conjunto)
 	}
 	this->id_circula = 0;
 	this->vazia = true;
+	this->politica_sub = politica_sub;
 }
 
 Cache::~Cache(){}
@@ -89,4 +91,27 @@ bool Cache::cacheFull()
 		}
 	}
 	return true;
+}
+
+void Cache::readFromMemory( int endereco )
+{	
+	/* gerador de número aleátorios */
+	std::random_device rd;
+	std::default_random_engine gen(rd());
+	std::uniform_int_distribution<> dis(0 ,num_linhas);
+	/*@TODO Lembra de tratar em sistema se o endereço passado para ser lido existe na memória */
+	/*
+	int Ler_Bloco;
+	for( auto line : linhas)
+	{
+		if( i->endereco == endereco)
+		{
+			Ler_Bloco = i->endereco;
+		}
+	}
+
+	if(politica_sub = 1)
+	{
+			//this->linhas[std::round(dis(gen))] = std::make_shared<Linha>();
+	}*/
 }
