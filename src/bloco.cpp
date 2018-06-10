@@ -62,7 +62,7 @@ std::ostream& Bloco::print(std::ostream& o)
 
 int Bloco::getNumeroBloco()
 {
-	return this->id_bloco;
+	return this->palavra[0]->getId_bloco();
 }
 int Bloco::getM_size()
 {
@@ -71,6 +71,14 @@ int Bloco::getM_size()
 int Bloco::getEndereco()
 {
 	return this->endereco;
+}
+
+bool Bloco::operator==( int i)
+{
+	if(this->endereco == i){
+		return true;
+	}
+	return false;
 }
 
 

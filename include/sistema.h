@@ -7,7 +7,15 @@ using std::unique_ptr;
 /*@details A classe sistema será o intermediário entre a memória cache e memória principal*/
 class Sistema
 {
-private:	
+private:
+	/**@breif Tipo de política de substituíção */	
+	int politica_sub;
+	/**@breif Tipo de política de inscrição */
+	int politica_ins;
+	/**#brief tipo de mapeamento */
+	int mapeamento;
+	int num_blocos;
+	int tam_bloco;
 	unique_ptr<Memoria> memoriaPrincipal;
 	unique_ptr<Cache>   cache_l1;
 public:
@@ -20,6 +28,10 @@ public:
 	void readFromMemory(int endereco);
 	/**@breif escreve na memória um conteúdo  passado como parâmetro */
 	void write();
+private:
+	void mapeamentoDireto(int endrec);
+	void mapeamentoTassociativo(int endrec);
+	void mapeamentoPorSet(int endrec);
 };
 
 

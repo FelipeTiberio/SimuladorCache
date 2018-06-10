@@ -53,5 +53,7 @@ public:
 	virtual int getM_size();
 	virtual int getEndereco();
 
+	virtual bool operator==( int endereco);
+
 };
 #endif
