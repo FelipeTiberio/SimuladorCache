@@ -22,6 +22,8 @@ private:
 	int id_circula;
 	/**@breif Quantidade de conjuntos na cache, apenas é usando no mapeamento por conjunto */
 	int num_conjunto;
+	/**@breif o atributo será verdadeiro quando a cache estiver cheia, caso contrário, será vázia */
+	bool cheia;
 public:
 	/**@breif Na construção de um cache é necessário passar  a quanditade de linhas e quantidade de palavras por linha.*/
 	Cache(int n_linhas, int size_linha, int num_conjunto);
@@ -45,6 +47,8 @@ public:
 	* conjunto. A quantidade de linhas por conjunto é dado por: 
 	* (|num_linha|)/(|nun_conjunto|) = quantidade de linha por conjunto */
 	void mapeamentoPorSet(shared_ptr<Bloco>);
+	/**@return apenas retorna verdadeiro quando a cache estiver cheia, caso contrário, será false  */
+	bool cacheFull();
 };
 
 

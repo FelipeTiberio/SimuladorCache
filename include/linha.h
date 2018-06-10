@@ -9,8 +9,7 @@ using std::ostream;
 class Linha : public Bloco
 {
 private:
-	/**@details usando para verificar se uma linha da chache está 
-	** vázia */
+	/**@details usando para verificar se uma linha da chache está vázia */
 	bool vazia;	
 public:
 	Linha(int size);
@@ -20,6 +19,7 @@ public:
 	virtual std::ostream& print(ostream& o);
 	/**@return retorna verdadeiro se a linha nunca foi gravada, retorna falso, caso contrário*/
 	bool empty();	
+	void setEmpty(bool emp);
 };
 
 #endif

@@ -43,3 +43,8 @@ bool Linha::empty()
 {
 	return this->vazia;
 }
+
+void Linha::setEmpty(bool emp)
+{
+	this->vazia = false;
+}

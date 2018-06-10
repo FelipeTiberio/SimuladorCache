@@ -54,6 +54,7 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 	this->vazia = false;
 
 }
+
 void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 {
 
@@ -70,12 +71,22 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			return;
 		}
 		/*Será verdade quando percorrer todo o set e não encontrar linhas vázias, então colocar na última linha */
-		else if( i == (colocarNoSet + LinhasInSet -1) )
-		{
-			this->linhas[i] = std::make_shared<Linha>(NovaLinha);
-		}
-
-
+		//else if( i == (colocarNoSet + LinhasInSet -1) )
+		//{
+		//	this->linhas[i] = std::make_shared<Linha>(NovaLinha);
+		//}
 	}
 	
+}
+
+bool Cache::cacheFull()
+{
+	for(auto l : linhas)
+	{
+		if( l->empty()==true)
+		{
+			return false;
+		}
+	}
+	return true;
 }

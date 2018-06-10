@@ -49,6 +49,7 @@ int main(int argc, char const *argv[])
 	cache_l1.mapeamentoDireto(MemoriaPrincipal.vetorBlocos[0]);
 	cache_l1.mapeamentoToAssociativo(MemoriaPrincipal.vetorBlocos[2]);
 	cache_l1.mapeamentoPorSet(MemoriaPrincipal.vetorBlocos[3]);
+	cache_l1.mapeamentoPorSet(MemoriaPrincipal.vetorBlocos[5]);
 	cache_l1.showCache();
 	MemoriaPrincipal.showMemoria();
 
