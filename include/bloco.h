@@ -31,6 +31,7 @@ protected:
 public:
 	Bloco();
 	Bloco(int size);
+	Bloco(int size, int endereco);
 	virtual ~Bloco();
 	/**@breif o método write escreve uma palavra em um bloco,@param é necessário passar um id para o vector<Palavra> do Bloco,
 	* e o conteudo que será armazenado. */
@@ -52,6 +53,8 @@ public:
 	virtual int getNumeroBloco();
 	virtual int getM_size();
 	virtual int getEndereco();
+
+	virtual bool operator==( Bloco &d);
 
 	virtual bool operator==( int endereco);
 

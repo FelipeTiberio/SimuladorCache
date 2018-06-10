@@ -3,7 +3,9 @@
 #include "memoria.h"
 #include <iostream>
 #include <fstream>
-
+#include <cstring>
+#include <memory>
+using std::cout; using std::endl;
 Sistema::Sistema() 
 {
 	vector<int> guardaConfig; /* Cada um dos índice do vector será uma das linhas do arquivo */
@@ -35,6 +37,7 @@ Sistema::Sistema()
 	this->politica_sub = politicaSub;		
 	int politicaEscri = guardaConfig[6];
 	this->politica_ins = politicaEscri;
+	this->tam_memoria = tamanhoDoBloco * NumeroBlocosMemoria;
 	/*instanciando a Memória principal */
 	memoriaPrincipal = std::make_unique<Memoria>(NumeroBlocosMemoria,tamanhoDoBloco);
 	/*instanciando a cache*/
@@ -56,6 +59,7 @@ void Sistema::readFromMemory( int endereco)
 		std::cout << "** Numero de endereço passado não existe na memoria principal **\n";
 		exit(1);
 	}
+	/* verificam qual é o tipo de mapeamento usando */
 	if(this->mapeamento == 1)
 	{
 		mapeamentoDireto(endereco);
@@ -76,38 +80,81 @@ void Sistema::readFromMemory( int endereco)
 }
 
 void Sistema::mapeamentoDireto(int endereco)
-{
-	//int BlocoTocache ;
+{	/*
 	for(int i =0 ; i < num_blocos ; i++)
 	{
 		for(int j = 0; j < tam_bloco ; j++)
 		{
+			cout <<" i = " <<  i ;
 			if(memoriaPrincipal->vetorBlocos[i]->palavra[j]->getEndereco() == endereco)
 			{
+				cout <<" j="<< j << endl;
 				std::cout << "O bloco que possui o endereco " << endereco << " é " << memoriaPrincipal->vetorBlocos[i]->getNumeroBloco() << "\n";
 				cache_l1->mapeamentoDireto(memoriaPrincipal->vetorBlocos[i]);
+				std::cout << "Cout entrei ddddd\n"; 
 				return ;
 			}
 		}
 	}
+	*/
+	/*
+	for(int i = 0 ; i < num_blocos ; i++)
+	{
+		int end_0 = memoriaPrincipal->vetorBlocos[i]->palavra[0]->getEndereco() ;
+		if( (end_0 <= endereco) && (endereco <= (end_0 + tam_bloco -1 )) )
+		{
+			cache_l1->mapeamentoDireto(memoriaPrincipal->vetorBlocos[i]);
+			return;
+		}
+	}*/
+	
+	std::shared_ptr<Bloco> aux = std::make_shared<Bloco>(tam_bloco, endereco);
 
-
-	std::cerr <<"Erro inesperado no mapeamentoDireto \n";
+	for(int i = 0 ; i < tam_memoria ; i++)
+	{
+		if((*aux) == (*(memoriaPrincipal->vetorBlocos[i])))
+		{
+			cache_l1->mapeamentoDireto(memoriaPrincipal->vetorBlocos[i]);
+			return;
+		}
+	}
+		std::cerr <<"Erro inesperado no mapeamentoDireto \n";
 	exit(1);
 }
 
 void Sistema::mapeamentoTassociativo( int endereco )
 {
-
+	/*TODO*/
 }
 
 void Sistema::mapeamentoPorSet( int endereco)
 {
-
+	/*TODO*/
 }
 
-void write (int content )
+void Sistema::write (int content )
 {
+	/*TODO*/
+}
+
+void  Sistema::executar(char * comando, int endereco)
+{
+	if(strcmp(comando, "quit")==0)
+		return;
+	if(strcmp(comando, "read")==0){
+		this->readFromMemory(endereco);
+		return;
+	}
+	if(strcmp(comando, "write")==0){
+		this->write(endereco);
+		return;
+	}
+	if(strcmp(comando, "show")==0){
+		this->show();
+		return;
+	}
+	std::cout << " Comando não encontrado \n";
+	return;
 
 }
 

@@ -16,6 +16,8 @@ private:
 	int mapeamento;
 	int num_blocos;
 	int tam_bloco;
+	/**@breif tamanho da memoria em endeços */
+	int tam_memoria;
 	unique_ptr<Memoria> memoriaPrincipal;
 	unique_ptr<Cache>   cache_l1;
 public:
@@ -27,7 +29,9 @@ public:
 	/*@breif ler da memória um endereço e carrega na memória o bloco correspondente ao endereço */
 	void readFromMemory(int endereco);
 	/**@breif escreve na memória um conteúdo  passado como parâmetro */
-	void write();
+	void write(int content);
+	void executar(char * comando, int endereco);
+
 private:
 	void mapeamentoDireto(int endrec);
 	void mapeamentoTassociativo(int endrec);

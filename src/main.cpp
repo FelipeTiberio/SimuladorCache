@@ -59,41 +59,30 @@ int main(int argc, char const *argv[])
 	*/
 	char argv2[20][20];
 	string input;
-	int endereco = -1;
 	Sistema sistema;
 	sistema.show();
-	char * pedaco;
-  	char * comando;
-	sistema.readFromMemory(0);
-	sistema.readFromMemory(23);
-	sistema.show();
-	/*
+
 	do{
-		int i = 0;
-		//limpar o bunfer e recolhe os dados 
-		char input[256];
-		//Pegar toda a linha do usuário e coloca no cstring 
-		std::cin.getline (input,256);
-		//Será  o ponteiro que guadará as cstring separadas por um espaço em blanco
-  		char * pedaco;
-  		//Primeiro corte do cstring input, irá pegar tudo até o primeiro espaço em blanco 
-  		pedaco = strtok (input," ");
-  		//Continua cortando o cstring input até que ele acabe 
-  		while (pedaco != NULL)
-  		{
-    	//Vai armazeno os pedaço de input em argv2
-    	strcpy( argv2[i], pedaco);
+
+	char argv2[10][10];
+	int i =0;
+	char input[256];
+	std::cin.getline (input,256);
+	char * pedaco;
+	
+	pedaco = strtok (input," ");
+	while (pedaco != NULL)
+	{
+	   	strcpy( argv2[i], pedaco);
     	pedaco = strtok (NULL, " ");
     	i++;
-    	}
-    	strcpy(comando, argv2[0]);
-    	cout <<"Comando lindo foi(" << comando << ")\n";
-    	endereco = atoi(argv2[1]);
-    	cout <<"o endereco lido foi " << endereco << "\n";
+	}
+	sistema.executar(argv2[0],atoi(argv2[1]));
+	std::cout << argv2[0] << " " << atoi(argv2[1]) << "\n";
 
-    	cout << strcmp(comando, "quit") << endl;
-	}while( !(strcmp(comando, "quit") == 0 ) );
+	}while( !(strcmp(argv2[0], "q") == 0 ) );
+
 	cout << "*******FIM********\n";
 	exit(1); //@TODO remover isso deletar todos os ponteiros 
-	return 0;*/
+	return 0;
 }

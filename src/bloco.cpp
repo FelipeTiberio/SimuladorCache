@@ -20,6 +20,20 @@ Bloco::Bloco(int size)
 	}
 	this->id_bloco++;
 }
+Bloco::Bloco(int size, int end)
+{
+	this->m_size = size;
+	this->palavra.resize(size, nullptr);
+	this->id_circular = 0;
+
+	for(int i = 0 ; i < size ; i++)
+	{
+		palavra[i] = std::make_shared<Palavra>(this->id_bloco, this->endereco, 0);
+		palavra[i]->setEndereco(end);
+		this->endereco++;
+	}
+	this->id_bloco++;
+}
 
 Bloco::Bloco(){}
 Bloco::~Bloco(){}
@@ -77,6 +91,18 @@ bool Bloco::operator==( int i)
 {
 	if(this->endereco == i){
 		return true;
+	}
+	return false;
+}
+
+bool Bloco::operator==( Bloco &b)
+{
+	int n = this->palavra.size();
+	for( int i = 0; i < n ; i++)
+	{
+		//	std::cout << (*(b.palavra[i]));
+		if( this->palavra[0]->getEndereco() == b.palavra[i]->getEndereco())
+			return true;
 	}
 	return false;
 }

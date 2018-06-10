@@ -60,7 +60,7 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 {
 
-	int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
+	//int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
 	int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
 	int colocarNalinha = colocarNoSet + colocarNoSet;
 
