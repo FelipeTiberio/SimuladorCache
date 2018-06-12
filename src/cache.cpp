@@ -49,9 +49,18 @@ void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha)
 }
 void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 {
-	
-	int i = id_circula % num_linhas;
-	id_circula++;
+	int i = this->id_circula % num_linhas;
+	/*Verifica se o endereço passado já está na cache*/
+	for(int i = 0 ; i < num_linhas ; i++)
+		{
+			if((*NovaLinha) == (*(linhas[i])))
+			{
+
+				return;
+			}
+		}
+
+	this->id_circula++;
 	
 	if(this->cacheFull() == false)
 	{
@@ -61,27 +70,61 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 	}
 	else
 	{
-		cout << "cache cheia executar politica de sub \n";
 		this->tipo_de_politica_sub( NovaLinha);
 	}
-
-	
 }
 void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 {
-	//int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
+	int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
 	int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
 	int colocarNalinha = colocarNoSet + colocarNoSet;
+	int contaSe_set_esta_cheio = 0;	/*verifica se o set está cheio*/
 
+	/*Verifica se o endereço passado já está na cache, caso esteja finaliza*/
+	for(int i = 0 ; i < num_linhas ; i++)
+		{
+			if((*NovaLinha) == (*(linhas[i])))
+			{
+
+				return;
+			}
+		}
+
+	/*Verifica se o conjunto conrespondente ao bloco já está se cheio, utiliza um contador para verificar */
 	for(int i = (colocarNalinha); i < num_linhas ; i++)
 	{
-		/*Sem usar política de substituíção, colocar o bloco na primeira linha do set que estiver vaga */
 		if(this->linhas[i]->empty())
 		{
-			this->linhas[i] = std::make_shared<Linha>(NovaLinha);
-			return;
+			
+			break;
 		}
+		else
+		{
+			contaSe_set_esta_cheio++;
+		}	
+	}
+	/*Se o conjunto correspondente estiver cheio utiliza a politica de sub*/
+	if(contaSe_set_esta_cheio == LinhasInSet)
+	{
+			std::random_device rd;
+			std::default_random_engine gen(rd());
+			std::uniform_int_distribution<> dis(colocarNalinha, colocarNalinha + LinhasInSet-1 );
+			this->linhas[std::round(dis(gen))] = std::make_shared<Linha>(NovaLinha);
+			return;
+	}
+	else /*se não está cheio coloca o bloco nomalmente no set*/
+	{
+		for(int i = (colocarNalinha); i < num_linhas ; i++)
+		{
+		/*Sem usar política de substituíção, colocar o bloco na primeira linha do set que estiver vaga */
+			if(this->linhas[i]->empty())
+			{
+				this->linhas[i] = std::make_shared<Linha>(NovaLinha);
+				return;
+				
+			}
 		
+		}
 	}
 	
 }
