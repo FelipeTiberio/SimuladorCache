@@ -42,7 +42,7 @@ Sistema::Sistema()
 	/*instanciando a Memória principal */
 	memoriaPrincipal = std::make_unique<Memoria>(NumeroBlocosMemoria,tamanhoDoBloco);
 	/*instanciando a cache*/
-	cache_l1 = std::make_unique<Cache>(NumeroLinhasCache,tamanhoDoBloco, numeroConjunto, politicaSub);
+	cache_l1 = std::make_unique<Cache>(NumeroLinhasCache,tamanhoDoBloco, numeroConjunto, politicaSub, mapeamento);
 
 }
 Sistema::~Sistema() {}

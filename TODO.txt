@@ -8,10 +8,12 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 
 2. Número do conjunto [x](Fazer emm conjunto com o mapeamento parcialmente associativo ) 
 	-> Cada bloco na memória tenho um atributo dizendo qual é o seu set [x]
+
 3. Políticas de substituições []
-	-> Aleatório []
+	-> Aleatório [x]
 	-> FIFO []
-	-> LFI  []
+	-> LFU  []
+	-> LRU  []
 
 4. Políticas de escrita []
 	-> write-back []
