@@ -53,7 +53,7 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 	int i = id_circula % num_linhas;
 	id_circula++;
 	
-	if(this->cheia == false)
+	if(this->cacheFull() == false)
 	{
 	/*Na linha abaixo irei usar um construtor cópia */
 	this->linhas[i] = std::make_shared<Linha>(NovaLinha);
@@ -125,6 +125,6 @@ void Cache::sub_aleatorio(shared_ptr<Bloco> NovaLinha)
 	std::uniform_int_distribution<> dis(0,num_linhas-1);
 	/*coloca o bloco em uma linha aleátoria */
 	this->linhas[std::round(dis(gen))] = std::make_shared<Linha>(NovaLinha);
-	cout << "entrei no sub_aleatorio\n";
+
 	return;
 }
