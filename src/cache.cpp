@@ -96,11 +96,12 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 		else
 		{
 			contaSe_set_esta_cheio++;
+			cout << "o contador do conjunto  " << contaSe_set_esta_cheio << "\n";
 		}	
 	}
 	/*Se o conjunto correspondente estiver cheio utiliza a politica de sub*/
 	if(contaSe_set_esta_cheio == LinhasInSet )
-	{	//cout << "vou executar a politaca de sub \n";
+	{	cout << "vou executar a politaca de sub \n";
 			this->tipo_de_politica_sub(NovaLinha); 
 	}
 	else /* se não está cheio coloca o bloco nomalmente no set*/
@@ -110,7 +111,7 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			/* Sem usar política de substituíção, colocar o bloco na primeira linha do set que estiver vaga */
 			if(this->linhas[i]->empty())
 			{
-				this->linhas[i] = std::make_shared<Linha>(NovaLinha);return;
+				this->linhas[i] = std::make_shared<Linha>(NovaLinha); return;
 			}
 		
 		}
@@ -139,9 +140,9 @@ void Cache::tipo_de_politica_sub(shared_ptr<Bloco> NovaLinha)
 		case 2:
 			this->sub_FIFO(NovaLinha);return;	
 		case 3:
-			//this->sub_LFU(endereco);return;
+			this->sub_LFU(NovaLinha);return;
 		case 4:
-			//this->sub_LRU(endereco);return;
+			this->sub_LRU(NovaLinha);return;
 		default:
 			cout << "ERRO desoconhecido no método tipo_de_politica_sub\n";exit(1);
 	}
@@ -192,5 +193,15 @@ void Cache::sub_FIFO(shared_ptr<Bloco> NovaLinha)
 		int colocarNalinha = (colocarNoSet + colocarNoSet) + i ;
 		this->linhas[colocarNalinha] = std::make_shared<Linha>(NovaLinha);
 	}
+
+}
+
+void Cache::sub_LFU(shared_ptr<Bloco> NovaLinha)
+{
+
+}
+
+void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
+{
 
 }

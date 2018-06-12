@@ -11,6 +11,8 @@ class Linha : public Bloco
 private:
 	/**@details usando para verificar se uma linha da chache está vázia */
 	bool vazia;	
+	/**@detials usando para verificar o uso de um determinado bloco na cache, é incrementado em um sempre que o bloco é acessado */
+	int referenciaTemporal;
 public:
 	Linha(int size);
 	Linha(std::shared_ptr<Bloco>);
@@ -20,6 +22,12 @@ public:
 	/**@return retorna verdadeiro se a linha nunca foi gravada, retorna falso, caso contrário*/
 	bool empty();	
 	void setEmpty(bool emp);
+	/**@return retorna  o referenciador temporal de um bloco */
+	int getReferencia();
+	/**@breif decrementa  em um o referenciador temporal de linha*/
+	void lessReferencial();
+	/**@breif incrementa em um o referenciador temporal de linha */
+	void plusReferencial();
 };
 
 #endif

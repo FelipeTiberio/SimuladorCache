@@ -49,3 +49,17 @@ void Linha::setEmpty(bool emp)
 {
 	this->vazia = false;
 }
+
+int Linha::getReferencia()
+{
+	return this->referenciaTemporal;
+}
+
+void Linha::lessReferencial()
+{
+	this->referenciaTemporal--;
+}
+void Linha::plusReferencial()
+{
+	this->referenciaTemporal++;
+}

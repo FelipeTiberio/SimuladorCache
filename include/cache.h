@@ -72,8 +72,8 @@ public:
 
 	/**@brief usando para substituir os blocos no mapeamento associativo e por conjunto, substitui de maneira aleátorio */
 	void sub_FIFO(shared_ptr<Bloco> NovaLinha);
-	void sub_LFU(int end);
-	void sub_LRU(int end);
+	void sub_LFU(shared_ptr<Bloco> NovaLinha);
+	void sub_LRU(shared_ptr<Bloco> NovaLinha);
 	
 };
 #endif
