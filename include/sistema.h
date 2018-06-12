@@ -30,12 +30,15 @@ public:
 	void readFromMemory(int endereco);
 	/**@breif escreve na memória um conteúdo  passado como parâmetro */
 	void write(int content);
+	/**@breif Recebe os comando passado pelo o usuário durante o programa */
 	void executar(char * comando, int endereco);
 
 private:
 	void mapeamentoDireto(int endrec);
 	void mapeamentoTassociativo(int endrec);
 	void mapeamentoPorSet(int endrec);
+
+	
 
 };
 

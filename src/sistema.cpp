@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstring>
 #include <memory>
+#include <random>
 using std::cout; using std::endl;
 Sistema::Sistema() 
 {
@@ -80,40 +81,16 @@ void Sistema::readFromMemory( int endereco)
 }
 
 void Sistema::mapeamentoDireto(int endereco)
-{	/*
-	for(int i =0 ; i < num_blocos ; i++)
-	{
-		for(int j = 0; j < tam_bloco ; j++)
-		{
-			cout <<" i = " <<  i ;
-			if(memoriaPrincipal->vetorBlocos[i]->palavra[j]->getEndereco() == endereco)
-			{
-				cout <<" j="<< j << endl;
-				std::cout << "O bloco que possui o endereco " << endereco << " é " << memoriaPrincipal->vetorBlocos[i]->getNumeroBloco() << "\n";
-				cache_l1->mapeamentoDireto(memoriaPrincipal->vetorBlocos[i]);
-				std::cout << "Cout entrei ddddd\n"; 
-				return ;
-			}
-		}
-	}
-	*/
-	/*
-	for(int i = 0 ; i < num_blocos ; i++)
-	{
-		int end_0 = memoriaPrincipal->vetorBlocos[i]->palavra[0]->getEndereco() ;
-		if( (end_0 <= endereco) && (endereco <= (end_0 + tam_bloco -1 )) )
-		{
-			cache_l1->mapeamentoDireto(memoriaPrincipal->vetorBlocos[i]);
-			return;
-		}
-	}*/
-	
+{	
+	/*Cria um bloco temporário usando o constrantor de bloco que recebe dois parâmetores */
 	std::shared_ptr<Bloco> aux = std::make_shared<Bloco>(tam_bloco, endereco);
 
 	for(int i = 0 ; i < tam_memoria ; i++)
 	{
+		/*Compara até encontra um bloco que possua o endereço passado */
 		if((*aux) == (*(memoriaPrincipal->vetorBlocos[i])))
 		{
+			/*Passa para o método mapeamento direto de cache o bloco que possuio o endereço passado */
 			cache_l1->mapeamentoDireto(memoriaPrincipal->vetorBlocos[i]);
 			return;
 		}
@@ -122,20 +99,18 @@ void Sistema::mapeamentoDireto(int endereco)
 	exit(1);
 }
 
-
 void Sistema::mapeamentoTassociativo( int endereco )
 {
-
-	std::shared_ptr<Bloco> aux = std::make_shared<Bloco>(tam_bloco, endereco);
-	for(int i = 0 ; i < tam_memoria ; i++)
-	{
-		if((*aux) == (*(memoriaPrincipal->vetorBlocos[i])))
+		std::shared_ptr<Bloco> aux = std::make_shared<Bloco>(tam_bloco, endereco);
+		for(int i = 0 ; i < tam_memoria ; i++)
 		{
+			if((*aux) == (*(memoriaPrincipal->vetorBlocos[i])))
+			{
 
-			cache_l1->mapeamentoToAssociativo(memoriaPrincipal->vetorBlocos[i]);
-			return;
+				cache_l1->mapeamentoToAssociativo(memoriaPrincipal->vetorBlocos[i]);
+				return;
+			}
 		}
-	}
 }
 
 void Sistema::mapeamentoPorSet( int endereco)
@@ -149,11 +124,6 @@ void Sistema::mapeamentoPorSet( int endereco)
 			return;
 		}
 	}
-}
-
-void Sistema::write (int content )
-{
-	/*TODO*/
 }
 
 void  Sistema::executar(char * comando, int endereco)
@@ -183,5 +153,10 @@ void  Sistema::executar(char * comando, int endereco)
 	std::cout << " Comando não encontrado \n";
 	return;
 
+}
+
+void Sistema::write (int content )
+{
+	/*TODO*/
 }
 

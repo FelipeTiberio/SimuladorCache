@@ -9,11 +9,12 @@ using std::make_shared;
 
 class Cache
 {
+public:
+	/**@breif Vector de ponteiros inteligentes para Linhas*/
+	vector<std::shared_ptr<Linha>> linhas;
 private:
 	/**@breif O dado diz quantas linhas existem na chace */
 	int num_linhas;
-	/**@breif Vector de ponteiros inteligentes para Linhas*/
-	vector<std::shared_ptr<Linha>> linhas;
 	/**@breif A quantidade de palavras que haverá em uma linha */
 	int size_linha;
 	/**@breif o atributo diz se em algum momento a cache foi carregada */
@@ -41,17 +42,24 @@ public:
 	void showCache();
 	/**@return retorna verdadeiro se a memória estiver vazia, caso contrário, retorna falso */
 	bool empty();
-	/**@details O k-ésimo bloco será armazenado na posição (k % |num_linha|) no vector de Linha */
+	/**@details O k-ésimo bloco será armazenado na posição (k % |qunatidade_linha|) no vector de Linha */
 	void mapeamentoDireto(shared_ptr<Bloco>);
 	/**@details Sempre armazena o bloco na próxima linha disponivel. no cenário em que a memória
 	* estiver cheia será utilizado alguma das políticas de substituição.*/
 	void mapeamentoToAssociativo(shared_ptr<Bloco>);
 	/**@details Divide a cache em conjuntos, cada bloco ca memória é associado a um único 
 	* conjunto. A quantidade de linhas por conjunto é dado por: 
-	* (|num_linha|)/(|nun_conjunto|) = quantidade de linha por conjunto */
+	* (|quantidade_linha|)/(|nun_conjunto|) = quantidade de linha por conjunto */
 	void mapeamentoPorSet(shared_ptr<Bloco>);
 	/**@return apenas retorna verdadeiro quando a cache estiver cheia, caso contrário, será false  */
 	bool cacheFull();
+
+	void tipo_de_politica_sub(shared_ptr<Bloco> NovaLinha);
+	/**@brief usando para substituir os blocos no mapeamento associativo e por conjunto, substitui de maneira aleátorio */
+	void sub_aleatorio(shared_ptr<Bloco> NovaLinha);
+	void sub_FIFO(int end);
+	void sub_LFU(int end);
+	void sub_LRU(int end);
 	
 };
 #endif

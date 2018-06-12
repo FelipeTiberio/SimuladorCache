@@ -20,6 +20,18 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 5. Uma classe sistema que gerenciará todos os itens acima, assim a implementação 
  não precisará está de forma confusa e solta no main.[x]
 
+6. colocar guarda e tratar algumas entradas do usuário como erro [].
+
 	COISAS QUE FAREI CASO EXISTA TEMPO :
 1. No caso de im política de substituíção por conjunto 
    imprime um marcador de onde começa e termina cada conjunto [].
+
+2. O vector de linhas na cache, bem como, o vector de blocos estão públicos em suas classe,
+fiz isso porque assim era mais fácil de imprementar os acessos do sistemas a esses membros.
+(Caso exista tempo, antes de mandar ao professor corrigir isso). Solução que pode funcionar:
+Colocar a classe sistema como friend das classes memoria e cahce[].
+
+3.Implementar um membro na classe sistema, ou na cache mesmo que diga quando ocorre cache hits:
+COMO FUNCIONARÁ;
+ Quando digita read de um endereço na memorio o atributo o atributo será verdade quando quando o bloco 
+ já estiver na memória, será falso caso contrário.[]
