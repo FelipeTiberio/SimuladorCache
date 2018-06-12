@@ -80,13 +80,13 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 	for(int i = 0 ; i < num_linhas ; i++)
 		{
 			if((*NovaLinha) == (*(linhas[i])))
-			{
-
+			{	
+				//cout << "já está  na memória \n";
 				return;
 			}
 		}
 	/*Verifica se o conjunto conrespondente ao bloco já está se cheio, utiliza um contador para verificar */
-	for(int i = (colocarNalinha); i < num_linhas ; i++)
+	for(int i = (colocarNalinha); i < size_linha ; i++)
 	{
 		if(this->linhas[i]->empty())
 		{
@@ -99,9 +99,9 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 		}	
 	}
 	/*Se o conjunto correspondente estiver cheio utiliza a politica de sub*/
-	if(contaSe_set_esta_cheio == LinhasInSet)
-	{
-			this->tipo_de_politica_sub(NovaLinha); return;
+	if(contaSe_set_esta_cheio == LinhasInSet )
+	{	//cout << "vou executar a politaca de sub \n";
+			this->tipo_de_politica_sub(NovaLinha); 
 	}
 	else /* se não está cheio coloca o bloco nomalmente no set*/
 	{
@@ -115,7 +115,7 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 		
 		}
 	}
-	
+	cout << "O código não deveria vim até aqui em mapeamentoPorSet()\n";
 }
 
 bool Cache::cacheFull()
@@ -153,7 +153,6 @@ void Cache::sub_aleatorio(shared_ptr<Bloco> NovaLinha)
 	std::default_random_engine gen(rd());
 	/*gera número no intervalo de 0 a (quantidade_linha_na_cache -1) */
 	std::uniform_int_distribution<> dis(0,num_linhas-1);
-
 	/*coloca o bloco em uma linha aleátoria  na política tatalmente associativa */
 	if(politica_map == 2){
 			this->linhas[std::round(dis(gen))] = std::make_shared<Linha>(NovaLinha); return;
@@ -176,11 +175,22 @@ void Cache::sub_aleatorio(shared_ptr<Bloco> NovaLinha)
 void Cache::sub_FIFO(shared_ptr<Bloco> NovaLinha)
 {
 	/*coloca o novo bloco na memória usando FIFO */
+	cout << "1ª entrei em FIFO \n";
 	if(politica_map == 2)
 	{
 		int i = id_circula % num_linhas;
 		id_circula++;
-		this->linhas[i] = std::make_shared<Linha>(NovaLinha);
+		this->linhas[i] = std::make_shared<Linha>(NovaLinha); return;
+	}
+	if(politica_map == 3)
+	{
+		cout << "2 º entrei em FIFO \n";
+		int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
+		int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
+		int i = id_circula % LinhasInSet;
+		id_circula++;
+		int colocarNalinha = (colocarNoSet + colocarNoSet) + i ;
+		this->linhas[colocarNalinha] = std::make_shared<Linha>(NovaLinha);
 	}
 
 }
