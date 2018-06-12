@@ -40,12 +40,17 @@ void Cache::showCache()
 	for(auto bloco : linhas)
 		cout << (*bloco);
 }	
-void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha)
+void Cache::mapeamentoDireto(std::shared_ptr<Bloco> NovaLinha) 
 {
 	int possicao = (NovaLinha->palavra[0]->getId_bloco() % num_linhas); 
 	/*Na linha abaixo irei usar um construtor cópia */
 	this->linhas[possicao] = std::make_shared<Linha>(NovaLinha);
 	this->vazia = false;
+	/* remove em um os referenciais de todas as linhas que estão na cache */
+	if(id_circula != 0){
+		this->lessAllReferencial();
+	}
+
 	id_circula++;
 }
 void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
@@ -56,6 +61,7 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 		{
 			if((*NovaLinha) == (*(linhas[i])))
 			{
+				linhas[i]->plusReferencial();
 				return;
 			}
 		}
@@ -64,8 +70,16 @@ void Cache::mapeamentoToAssociativo(shared_ptr<Bloco> NovaLinha)
 		this->linhas[i] = std::make_shared<Linha>(NovaLinha);
 		this->id_circula++;
 		this->vazia = false;
+		/* remove em um os referenciais de todas as linhas que estão na cache */
+		if(id_circula != 0){
+			this->lessAllReferencial();
+		}
 	}else{ 
 		this->tipo_de_politica_sub(NovaLinha);
+		/* remove em um os referenciais de todas as linhas que estão na cache */
+		if(id_circula != 0){
+			this->lessAllReferencial();
+		}return;
 	}
 }
 
@@ -81,6 +95,7 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 		{
 			if((*NovaLinha) == (*(linhas[i])))
 			{	
+				linhas[i]->plusReferencial();
 				//cout << "já está  na memória \n";
 				return;
 			}
@@ -102,7 +117,11 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 	/*Se o conjunto correspondente estiver cheio utiliza a politica de sub*/
 	if(contaSe_set_esta_cheio == LinhasInSet )
 	{	cout << "vou executar a politaca de sub \n";
-			this->tipo_de_politica_sub(NovaLinha); 
+			this->tipo_de_politica_sub(NovaLinha);
+			/* remove em um os referenciais de todas as linhas que estão na cache */
+			if(id_circula != 0){
+				this->lessAllReferencial();
+			} return;
 	}
 	else /* se não está cheio coloca o bloco nomalmente no set*/
 	{
@@ -111,7 +130,13 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			/* Sem usar política de substituíção, colocar o bloco na primeira linha do set que estiver vaga */
 			if(this->linhas[i]->empty())
 			{
-				this->linhas[i] = std::make_shared<Linha>(NovaLinha); return;
+				this->linhas[i] = std::make_shared<Linha>(NovaLinha); 
+				/* remove em um os referenciais de todas as linhas que estão na cache */
+				if(id_circula != 0){
+					this->lessAllReferencial();
+				}
+				this->id_circula++;
+				return;
 			}
 		
 		}
@@ -156,7 +181,7 @@ void Cache::sub_aleatorio(shared_ptr<Bloco> NovaLinha)
 	std::uniform_int_distribution<> dis(0,num_linhas-1);
 	/*coloca o bloco em uma linha aleátoria  na política tatalmente associativa */
 	if(politica_map == 2){
-			this->linhas[std::round(dis(gen))] = std::make_shared<Linha>(NovaLinha); return;
+			this->linhas[std::round(dis(gen))] = std::make_shared<Linha>(NovaLinha);this->id_circula++; return;
 	}
 	/*coloca o bloco em uma linha aleátoria  na política por set */
 	if(politica_map == 3){
@@ -167,6 +192,7 @@ void Cache::sub_aleatorio(shared_ptr<Bloco> NovaLinha)
 			std::default_random_engine gen(rd());
 			std::uniform_int_distribution<> dis(colocarNalinha, colocarNalinha + LinhasInSet-1 );
 			this->linhas[std::round(dis(gen))] = std::make_shared<Linha>(NovaLinha);
+			this->id_circula++;
 			return;
 	}
 	cout << "ERRO desoconhecido no método sub_aleatorio\n"; exit(1);
@@ -203,5 +229,24 @@ void Cache::sub_LFU(shared_ptr<Bloco> NovaLinha)
 
 void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 {
+	int menorIndice = 0; 
+	int aux = this->linhas[0]->getReferencia(); // Guarda o menor referencial da primeira linha da cache 
+	for(int i=0; i < num_linhas; i++) // percorre todas as linhas da cache
+	{
+		if(this->linhas[i]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
+		{
+			menorIndice = i;
+			aux = this->linhas[0]->getReferencia();
+		}
+	}
+	this->linhas[menorIndice] = std::make_shared<Linha>(NovaLinha); // substitui linha com o menor referencial pela nova linha 
+	this->linhas[menorIndice]->plusReferencial(); // incrementa em um o referencial da novalinha 
+}
 
+void Cache::lessAllReferencial()
+{
+	for(int i = 0 ; i <= id_circula % num_linhas; i++)
+	{
+		linhas[i]->lessReferencial();
+	}
 }

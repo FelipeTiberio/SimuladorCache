@@ -6,6 +6,7 @@
 Linha::Linha(int size):Bloco(size)
 {
 	this->vazia = true;
+	this->referenciaTemporal = 1;
 }
 Linha::Linha(std::shared_ptr<Bloco> b):Bloco( b->getM_size())
 {
@@ -13,6 +14,7 @@ Linha::Linha(std::shared_ptr<Bloco> b):Bloco( b->getM_size())
 	for(int i = 0; i < size; i++ )
 	{
 		this->palavra[i] = b->palavra[i];
+		this->referenciaTemporal = 1;
 	}
 	this->vazia = false;
 }
