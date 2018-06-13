@@ -100,7 +100,7 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			}
 		}
 	/*Verifica se o conjunto conrespondente ao bloco já está se cheio, utiliza um contador para verificar */
-	for(int i = (colocarNoSet + colocarNoSet); i < linhas.size() ; i++) /**O ERRO ESTÀ AQUI **/
+	for(unsigned int i = (colocarNoSet + colocarNoSet); i < linhas.size() ; i++) /**O ERRO ESTÀ AQUI **/
 	{
 		if(linhas[i]->getSet() == colocarNoSet)
 		{
@@ -244,21 +244,17 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 
 	}else if( politica_map == 3){
 
-		int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
+		//int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
 		int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
-		int i = id_circula % LinhasInSet;
 		id_circula++;
 		int colocarNalinha = (colocarNoSet + colocarNoSet)  ;
-
 		int aux = this->linhas[colocarNalinha]->getReferencia(); // Guarda o referencial o referencia da primeira linha no conjunto 
 
-		for(int j=colocarNalinha; j < LinhasInSet ; j++  ){
-			cout << " 1 Entrei aqui \n";
+		for(unsigned int j = (colocarNoSet + colocarNoSet); j < linhas.size(); j++  ){
 			if(this->linhas[j]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
 			{
 				menorIndice = j;
 				aux = this->linhas[0]->getReferencia();
-
 			}
 			this->linhas[menorIndice] = std::make_shared<Linha>(NovaLinha); // substitui linha com o menor referencial pela nova linha 
 			this->linhas[colocarNalinha]->Set((NovaLinha->palavra[0]->getId_bloco() % num_conjunto));/* settar em que set determinada linha pertence*/
