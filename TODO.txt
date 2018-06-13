@@ -13,11 +13,11 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 	-> Aleatório [x]
 	-> FIFO [x] 
 	-> LFU  []
-	-> LRU  [x (Funcina parcialmente, apenas para a política de sub totalmente associativa)
+	-> LRU  [x]
 	-> UM SOLUÇÃO QUE PODE FUNCIONAR, FAZER COM QUE CADA LINHA NA CACHE JÁ SAIBA EM QUE CONJUNTO ELA ESTARÁ
 	   ASSIM A CACHE FICARA MENOR E NÃO PRECISSAREI FAZER SEMPRE OS CÁLCULOS PARA SABE QUEM PERNTENCE AQUE CONJUNTO.
 	   POSSO USAR UM MÉTODO QUE RETORNA  A QUAL CONJUNTO UMA DETERMINADA LINHA PERTENÇA, OU UM ATRIBUTO QUE JÁ GUARDE 
-	   O SET.[x
+	   O SET.[x]
 
 4. Políticas de escrita []
 	-> write-back []
