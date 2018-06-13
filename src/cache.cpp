@@ -139,7 +139,6 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 	}
 	cout << "O código não deveria vim até aqui em mapeamentoPorSet()\n";
 }
-
 bool Cache::cacheFull()
 {
 	for(auto l : linhas)
@@ -151,7 +150,6 @@ bool Cache::cacheFull()
 	}
 	return true;
 }
-
 void Cache::tipo_de_politica_sub(shared_ptr<Bloco> NovaLinha)
 {
 	switch(politica_sub)
@@ -264,7 +262,6 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 		}
 	}
 }
-
 void Cache::lessAllReferencial()
 {
 	for(int i = 0 ; i <= id_circula % num_linhas; i++)
