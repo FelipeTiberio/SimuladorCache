@@ -11,13 +11,13 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 
 3. Políticas de substituições []
 	-> Aleatório [x]
-	-> FIFO [] (Funcina parcialmente, apenas para a política de sub totalmente associativa)
+	-> FIFO [x] 
 	-> LFU  []
 	-> LRU  [] (Funcina parcialmente, apenas para a política de sub totalmente associativa)
 	-> UM SOLUÇÃO QUE PODE FUNCIONAR, FAZER COM QUE CADA LINHA NA CACHE JÁ SAIBA EM QUE CONJUNTO ELA ESTARÁ
 	   ASSIM A CACHE FICARA MENOR E NÃO PRECISSAREI FAZER SEMPRE OS CÁLCULOS PARA SABE QUEM PERNTENCE AQUE CONJUNTO.
 	   POSSO USAR UM MÉTODO QUE RETORNA  A QUAL CONJUNTO UMA DETERMINADA LINHA PERTENÇA, OU UM ATRIBUTO QUE JÁ GUARDE 
-	   O SET.[]
+	   O SET.[x
 
 4. Políticas de escrita []
 	-> write-back []
@@ -26,9 +26,10 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 5. Uma classe sistema que gerenciará todos os itens acima, assim a implementação 
  não precisará está de forma confusa e solta no main.[x]
 
+	COISAS QUE FAREI CASO EXISTA TEMPO :
+
 6. colocar guarda e tratar algumas entradas do usuário como erro [].
 
-	COISAS QUE FAREI CASO EXISTA TEMPO :
 1. No caso de im política de substituíção por conjunto 
    imprime um marcador de onde começa e termina cada conjunto [].
 

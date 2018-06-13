@@ -30,6 +30,10 @@ public:
 	void lessReferencial();
 	/**@breif incrementa em um o referenciador temporal de linha */
 	void plusReferencial();
+	/**@return retorna em que set determinada linha está */
+	int getSet();
+	/**@brief seta uma linha para um determinado set*/
+	void Set(int set);
 };
 
 #endif

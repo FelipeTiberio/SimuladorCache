@@ -65,3 +65,11 @@ void Linha::plusReferencial()
 {
 	this->referenciaTemporal++;
 }
+int Linha::getSet()
+{
+	return this->set;
+}
+void Linha::Set(int set)
+{
+	this->set = set;
+}

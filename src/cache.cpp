@@ -100,29 +100,26 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			}
 		}
 	/*Verifica se o conjunto conrespondente ao bloco já está se cheio, utiliza um contador para verificar */
-	cout << "colocarNalinha = " << colocarNoSet + colocarNoSet << " e LinhasInSet é " << LinhasInSet << endl;
-
-	for(int i = (colocarNoSet + colocarNoSet); i < LinhasInSet ; i++) /**O ERRO ESTÀ AQUI **/
+	for(int i = (colocarNoSet + colocarNoSet); i < linhas.size() ; i++) /**O ERRO ESTÀ AQUI **/
 	{
-		cout << "**????this->linha " << i << " é " << this->linhas[i]->empty() << endl; 
-		if(this->linhas[i]->empty()){
-			break;
-		}else{
-			contaSe_set_esta_cheio++;
-			//cout << "o contador do conjunto  " << contaSe_set_esta_cheio <<"linhas in a set ="<< LinhasInSet<< "\n";
-		}	
+		if(linhas[i]->getSet() == colocarNoSet)
+		{
+			if(this->linhas[i]->empty()){
+				break;
+			}else{
+				contaSe_set_esta_cheio++;
+			}	
+		}
 	}
 	/*Se o conjunto correspondente estiver cheio utiliza a politica de sub*/
-	//cout << "contaSe_set_esta_cheio = " << contaSe_set_esta_cheio << " LinhasInSet= " << LinhasInSet << endl;
 	if(contaSe_set_esta_cheio == LinhasInSet )
-	{	cout << "vou executar a politaca de sub \n";
+	{	
 			this->tipo_de_politica_sub(NovaLinha);
 			/* remove em um os referenciais de todas as linhas que estão na cache */
 			if(id_circula != 0){
 				this->lessAllReferencial();
 			} return;
-	}
-	else /* se não está cheio coloca o bloco nomalmente no set*/
+	}else /* se não está cheio coloca o bloco nomalmente no set*/ 
 	{
 		for(int i = (colocarNalinha); i < num_linhas ; i++)
 		{
@@ -130,12 +127,12 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			if(this->linhas[i]->empty())
 			{
 				this->linhas[i] = std::make_shared<Linha>(NovaLinha); 
+				this->linhas[i]->Set((NovaLinha->palavra[0]->getId_bloco() % num_conjunto));/* settar em que set determinada linha pertence*/
 				/* remove em um os referenciais de todas as linhas que estão na cache */
 				if(id_circula != 0){
 					this->lessAllReferencial();
 				}
-				this->id_circula++;
-				return;
+				this->id_circula++; return;
 			}
 		
 		}
@@ -201,7 +198,6 @@ void Cache::sub_aleatorio(shared_ptr<Bloco> NovaLinha)
 void Cache::sub_FIFO(shared_ptr<Bloco> NovaLinha)
 {
 	/*coloca o novo bloco na memória usando FIFO */
-	cout << "1ª entrei em FIFO \n";
 	if(politica_map == 2)
 	{
 		int i = id_circula % num_linhas;
@@ -210,13 +206,13 @@ void Cache::sub_FIFO(shared_ptr<Bloco> NovaLinha)
 	}
 	if(politica_map == 3)
 	{
-		cout << "2 º entrei em FIFO \n";
 		int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
 		int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
 		int i = id_circula % LinhasInSet;
 		id_circula++;
 		int colocarNalinha = (colocarNoSet + colocarNoSet) + i ;
 		this->linhas[colocarNalinha] = std::make_shared<Linha>(NovaLinha);
+		this->linhas[colocarNalinha]->Set((NovaLinha->palavra[0]->getId_bloco() % num_conjunto));/* settar em que set determinada linha pertence*/
 	}
 
 }
@@ -247,6 +243,7 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 		return;
 
 	}else if( politica_map == 3){
+
 		int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
 		int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
 		int i = id_circula % LinhasInSet;
@@ -256,7 +253,7 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 		int aux = this->linhas[colocarNalinha]->getReferencia(); // Guarda o referencial o referencia da primeira linha no conjunto 
 
 		for(int j=colocarNalinha; j < LinhasInSet ; j++  ){
-			cout << "linhas["<< i << "] e getReferencia() = "<< linhas[i]->getReferencia() << " aux = " << aux << endl; // teste
+			cout << " 1 Entrei aqui \n";
 			if(this->linhas[j]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
 			{
 				menorIndice = j;
@@ -264,14 +261,12 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 
 			}
 			this->linhas[menorIndice] = std::make_shared<Linha>(NovaLinha); // substitui linha com o menor referencial pela nova linha 
+			this->linhas[colocarNalinha]->Set((NovaLinha->palavra[0]->getId_bloco() % num_conjunto));/* settar em que set determinada linha pertence*/
 			this->id_circula++;
 			this->linhas[menorIndice]->plusReferencial(); // incrementa em um o referencial da novalinha 
 			return;
-
 		}
-
 	}
-
 }
 
 void Cache::lessAllReferencial()
