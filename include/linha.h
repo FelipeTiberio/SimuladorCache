@@ -13,6 +13,8 @@ private:
 	bool vazia;	
 	/**@detials usando para verificar o uso de um determinado bloco na cache, é incrementado em um sempre que o bloco é acessado */
 	int referenciaTemporal;
+	/**@details usando para armazenar na linha aque set, determinada linha pertence, apenas é usado na pólitca de sub por set */
+	int set;
 public:
 	Linha(int size);
 	Linha(std::shared_ptr<Bloco>);

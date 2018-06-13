@@ -11,9 +11,13 @@ Lista de implementação e mudanças desde 9 de junho de 2018.
 
 3. Políticas de substituições []
 	-> Aleatório [x]
-	-> FIFO []
+	-> FIFO [] (Funcina parcialmente, apenas para a política de sub totalmente associativa)
 	-> LFU  []
-	-> LRU  []
+	-> LRU  [] (Funcina parcialmente, apenas para a política de sub totalmente associativa)
+	-> UM SOLUÇÃO QUE PODE FUNCIONAR, FAZER COM QUE CADA LINHA NA CACHE JÁ SAIBA EM QUE CONJUNTO ELA ESTARÁ
+	   ASSIM A CACHE FICARA MENOR E NÃO PRECISSAREI FAZER SEMPRE OS CÁLCULOS PARA SABE QUEM PERNTENCE AQUE CONJUNTO.
+	   POSSO USAR UM MÉTODO QUE RETORNA  A QUAL CONJUNTO UMA DETERMINADA LINHA PERTENÇA, OU UM ATRIBUTO QUE JÁ GUARDE 
+	   O SET.[]
 
 4. Políticas de escrita []
 	-> write-back []
