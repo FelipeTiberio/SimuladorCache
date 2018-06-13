@@ -96,25 +96,24 @@ void Cache::mapeamentoPorSet(shared_ptr<Bloco> NovaLinha)
 			if((*NovaLinha) == (*(linhas[i])))
 			{	
 				linhas[i]->plusReferencial();
-				//cout << "já está  na memória \n";
 				return;
 			}
 		}
 	/*Verifica se o conjunto conrespondente ao bloco já está se cheio, utiliza um contador para verificar */
-	for(int i = (colocarNalinha); i < size_linha ; i++)
+	cout << "colocarNalinha = " << colocarNoSet + colocarNoSet << " e LinhasInSet é " << LinhasInSet << endl;
+
+	for(int i = (colocarNoSet + colocarNoSet); i < LinhasInSet ; i++) /**O ERRO ESTÀ AQUI **/
 	{
-		if(this->linhas[i]->empty())
-		{
-			
+		cout << "**????this->linha " << i << " é " << this->linhas[i]->empty() << endl; 
+		if(this->linhas[i]->empty()){
 			break;
-		}
-		else
-		{
+		}else{
 			contaSe_set_esta_cheio++;
-			cout << "o contador do conjunto  " << contaSe_set_esta_cheio << "\n";
+			//cout << "o contador do conjunto  " << contaSe_set_esta_cheio <<"linhas in a set ="<< LinhasInSet<< "\n";
 		}	
 	}
 	/*Se o conjunto correspondente estiver cheio utiliza a politica de sub*/
+	//cout << "contaSe_set_esta_cheio = " << contaSe_set_esta_cheio << " LinhasInSet= " << LinhasInSet << endl;
 	if(contaSe_set_esta_cheio == LinhasInSet )
 	{	cout << "vou executar a politaca de sub \n";
 			this->tipo_de_politica_sub(NovaLinha);
@@ -230,17 +229,49 @@ void Cache::sub_LFU(shared_ptr<Bloco> NovaLinha)
 void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 {
 	int menorIndice = 0; 
-	int aux = this->linhas[0]->getReferencia(); // Guarda o menor referencial da primeira linha da cache 
-	for(int i=0; i < num_linhas; i++) // percorre todas as linhas da cache
-	{
-		if(this->linhas[i]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
+	/*Para a política de associativa total*/
+	if(politica_map == 2){
+		int aux = this->linhas[0]->getReferencia(); // Guarda o menor referencial da primeira linha da cache 
+		for(int i=0; i < num_linhas; i++) // percorre todas as linhas da cache
 		{
-			menorIndice = i;
-			aux = this->linhas[0]->getReferencia();
+			//cout << "linhas["<< i << "] e getReferencia() = "<< linhas[i]->getReferencia() << " aux = " << aux << endl; // teste
+			if(this->linhas[i]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
+			{
+				menorIndice = i;
+				aux = this->linhas[0]->getReferencia();
+			}
 		}
+		this->linhas[menorIndice] = std::make_shared<Linha>(NovaLinha); // substitui linha com o menor referencial pela nova linha 
+		this->id_circula++;
+		this->linhas[menorIndice]->plusReferencial(); // incrementa em um o referencial da novalinha 
+		return;
+
+	}else if( politica_map == 3){
+		int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
+		int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
+		int i = id_circula % LinhasInSet;
+		id_circula++;
+		int colocarNalinha = (colocarNoSet + colocarNoSet)  ;
+
+		int aux = this->linhas[colocarNalinha]->getReferencia(); // Guarda o referencial o referencia da primeira linha no conjunto 
+
+		for(int j=colocarNalinha; j < LinhasInSet ; j++  ){
+			cout << "linhas["<< i << "] e getReferencia() = "<< linhas[i]->getReferencia() << " aux = " << aux << endl; // teste
+			if(this->linhas[j]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
+			{
+				menorIndice = j;
+				aux = this->linhas[0]->getReferencia();
+
+			}
+			this->linhas[menorIndice] = std::make_shared<Linha>(NovaLinha); // substitui linha com o menor referencial pela nova linha 
+			this->id_circula++;
+			this->linhas[menorIndice]->plusReferencial(); // incrementa em um o referencial da novalinha 
+			return;
+
+		}
+
 	}
-	this->linhas[menorIndice] = std::make_shared<Linha>(NovaLinha); // substitui linha com o menor referencial pela nova linha 
-	this->linhas[menorIndice]->plusReferencial(); // incrementa em um o referencial da novalinha 
+
 }
 
 void Cache::lessAllReferencial()

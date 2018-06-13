@@ -19,29 +19,28 @@ int Bloco::endereco = 0;
 int main(int argc, char const *argv[])
 {	
 	
-	char argv2[20][20];
-	string input;
-	Sistema sistema;
-	sistema.show();
+	char comandosTerminal[20][20];
+	string linha;
+	Sistema sistema; 
+	sistema.show(); /*Impressão inicial do memória e cache */
 
-	do{
+	do{ /*Irá ler o terminal por comandos separaados por espaço*/
 
-	char argv2[10][10];
-	int i =0;
-	char input[256];
-	std::cin.getline (input,256);
-	char * pedaco;
-	
-	pedaco = strtok (input," ");
+	int i = 0;
+	char linha[256 ];
+	std::cin.getline (linha,256);
+	char * pedaco; 
+	pedaco = strtok (linha," "); /*Quebra a linha de cstring em espaço */
+
 	while (pedaco != NULL)
 	{
-	   	strcpy( argv2[i], pedaco);
+	   	strcpy( comandosTerminal[i], pedaco); /*copia cada um dos pedaço da string para  a matriz de chars*/
     	pedaco = strtok (NULL, " ");
     	i++;
 	}
-	sistema.executar(argv2[0],atoi(argv2[1]));
+	sistema.executar(comandosTerminal[0],atoi(comandosTerminal[1]));
 
-	}while( !(strcmp(argv2[0], "q") == 0 ) );
+	}while( !(strcmp(comandosTerminal[0], "q") == 0 ) );
 
 	cout << "*******FIM DA SIMULAÇÃO********\n";
 	//exit(1); //@TODO remover isso deletar todos os ponteiros 
