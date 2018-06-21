@@ -269,3 +269,19 @@ void Cache::lessAllReferencial()
 		linhas[i]->lessReferencial();
 	}
 }
+
+int Cache::menorReferencial()
+{
+	int menor = linhas[0]->getReferencia();
+	int possicaoMenor;
+
+	for( int i =0 ; i < (num_linhas * size_linha); i++ )
+	{
+		if(menor > linhas[i]->getReferencia())
+		{
+			menor = linhas[i]->getReferencia();
+			possicaoMenor = i;
+		}
+	}
+	return possicaoMenor;
+}

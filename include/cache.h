@@ -75,8 +75,10 @@ public:
 	void sub_LFU(shared_ptr<Bloco> NovaLinha);
 	void sub_LRU(shared_ptr<Bloco> NovaLinha);
 
-	/**@breif decrementa todos os referencial que estão na cache */
+	/**@brief decrementa todos os referencial que estão na cache */
 	void lessAllReferencial();
+	/**@return retorna qual o problo da cache tem o mento endereço */
+	int menorReferencial();
 	
 };
 #endif

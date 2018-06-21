@@ -157,6 +157,14 @@ void  Sistema::executar(char * comando, int endereco)
 
 void Sistema::write (int content )
 {
-	/*TODO*/
+	if(politica_ins == 1) // write back
+	{
+
+	}
+	if(politica_ins == 2) 
+	{
+		int write_at = cache_l1->menorReferencial(); // em que bloco da cache será inscrito 
+		auto novoBloco = cache_l1[write_at]; 
+	}
 }
 

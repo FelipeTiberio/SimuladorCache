@@ -18,7 +18,9 @@ private:
 	int tam_bloco;
 	/**@breif tamanho da memoria em endeços */
 	int tam_memoria;
+	/**@breif o atributo repesenta a memória principal do computador, é instanciado no costrutor já com os valores aleatórios*/
 	unique_ptr<Memoria> memoriaPrincipal;
+	/**@brief o membro é instanciado  no construtor do sistema */
 	unique_ptr<Cache>   cache_l1;
 public:
 
