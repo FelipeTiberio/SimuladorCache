@@ -1,10 +1,11 @@
-#link exemplo do makefile 
-#https://stackoverflow.com/questions/30573481/path-include-and-src-directory-makefile/30602701
 
 EXE = simulador
 
+
 SRC_DIR = src
-OBJ_DIR = obj
+OBJ_DIR = ./build
+BIN_DIR = ./bin
+DOC_DIR = ./doc
 CC = g++
 SRC = $(wildcard $(SRC_DIR)/*.cpp)
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
@@ -16,13 +17,19 @@ LDLIBS += -lm
 
 .PHONY: all clean
 
-all: $(EXE)
+all: prepare $(EXE)
 
 $(EXE): $(OBJ)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o  $@
 
+prepare:
+	mkdir -p $(OBJ_DIR)
+	mkdir -p $(DOC_DIR)
+doxy:
+	mkdir -p $(DOC_DIR)
+	doxygen
 clean:
-	$(RM) $(OBJ) $(EXE) *.gch
+	$(RM) -rf $(OBJ) $(EXE) $(DOC_DIR) *.gch

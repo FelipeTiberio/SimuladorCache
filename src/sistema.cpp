@@ -6,6 +6,7 @@
 #include <cstring>
 #include <memory>
 #include <random>
+
 using std::cout; using std::endl;
 Sistema::Sistema() 
 {
@@ -163,8 +164,8 @@ void Sistema::write (int content )
 	}
 	if(politica_ins == 2) 
 	{
-		int write_at = cache_l1->menorReferencial(); // em que bloco da cache será inscrito 
-		auto novoBloco = cache_l1[write_at]; 
+		//int write_at = cache_l1->menorReferencial(); // em que bloco da cache será inscrito 
+		//auto novoBloco = cache_l1[write_at]; 
 	}
 }
 
