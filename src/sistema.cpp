@@ -1,6 +1,7 @@
 #include "sistema.h"
 #include "cache.h"
 #include "memoria.h"
+#include "linha.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -158,14 +159,24 @@ void  Sistema::executar(char * comando, int endereco)
 
 void Sistema::write (int content )
 {
+	/*Gerador e número aleatórios, para descobrir em que endereço do bloco substituir o conteudo */
+	std::random_device rd;
+	std::default_random_engine gen(rd());
+	std::uniform_int_distribution<> dis(0, tam_bloco-1);
+
+	int id = 0;  // Qual o endereço do bloco será substituído 
+	id = (unsigned int )std::round(dis(gen));
+
 	if(politica_ins == 1) // write back
 	{
 
 	}
 	if(politica_ins == 2) 
 	{
-		//int write_at = cache_l1->menorReferencial(); // em que bloco da cache será inscrito 
-		//auto novoBloco = cache_l1[write_at]; 
+		int write_at = cache_l1->menorReferencial(); // Será inscrito no bloco com o menor referencial 
+		std::shared_ptr<Linha> inscreve_cache = cache_l1->linhas[write_at];// ponteiro para linha da cache que será inscriata
+		write_at = inscreve_cache->getNumeroBloco(); // id do bloco a ser inscrito na memória principal 
+		std::shared_ptr<Bloco> inscreve_memoria = memoriaPrincipal->vetorBlocos[write_at]; // ponteiro para o bloco na memória que será inscrito
 	}
 }
 

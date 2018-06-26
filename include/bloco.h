@@ -35,7 +35,7 @@ public:
 	virtual ~Bloco();
 	/**@breif o método write escreve uma palavra em um bloco,@param é necessário passar um id para o vector<Palavra> do Bloco,
 	* e o conteudo que será armazenado. */
-	bool write( int id_palavra, int content);
+	virtual bool write( int id_palavra, int content);
 	/**@details Uma sobrecarga para o método write,@param recebe apenas o conteudo, armazena o dado de forma circula no vector<Palavra>*/
 	bool write(int content);
 	/**@breif retorna o tomando do bloco, i.e., a quantidade de palavras em um bloco */

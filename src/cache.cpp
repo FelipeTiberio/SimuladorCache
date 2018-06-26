@@ -159,7 +159,7 @@ void Cache::tipo_de_politica_sub(shared_ptr<Bloco> NovaLinha)
 		case 2:
 			this->sub_FIFO(NovaLinha);return;	
 		case 3:
-			this->sub_LFU(NovaLinha);return;
+			this->sub_LRU(NovaLinha);return;
 		case 4:
 			this->sub_LRU(NovaLinha);return;
 		default:
@@ -217,7 +217,7 @@ void Cache::sub_FIFO(shared_ptr<Bloco> NovaLinha)
 
 void Cache::sub_LFU(shared_ptr<Bloco> NovaLinha)
 {
-
+	/**/
 }
 
 void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
