@@ -73,3 +73,10 @@ void Linha::Set(int set)
 {
 	this->set = set;
 }
+
+bool Linha:: write_linha(int id_palavra, int content)                                                                                                                           
+{                                                                                                                                                                        
+        this->palavra[id_palavra]->setConteudo(content);                                                                                                                 
+        this->referenciaTemporal++;                                                                                                                                      
+        return true;                                                                                                                                                     
+}

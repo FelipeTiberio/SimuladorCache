@@ -167,16 +167,23 @@ void Sistema::write (int content )
 	int id = 0;  // Qual o endereço do bloco será substituído 
 	id = (unsigned int )std::round(dis(gen));
 
+	cout << "+++++++++++++++++\n";
 	if(politica_ins == 1) // write back
 	{
 
 	}
 	if(politica_ins == 2) 
 	{
+		cout << "---------------------\n";
 		int write_at = cache_l1->menorReferencial(); // Será inscrito no bloco com o menor referencial 
+		cout << "Enntrou no método write valor de write_at " << cache_l1->menorReferencial() << endl;
+		/*
 		std::shared_ptr<Linha> inscreve_cache = cache_l1->linhas[write_at];// ponteiro para linha da cache que será inscriata
 		write_at = inscreve_cache->getNumeroBloco(); // id do bloco a ser inscrito na memória principal 
+		
 		std::shared_ptr<Bloco> inscreve_memoria = memoriaPrincipal->vetorBlocos[write_at]; // ponteiro para o bloco na memória que será inscrito
+		inscreve_memoria->write(id, content); // inscreve o novo conteudo na memória                                                                             
+        inscreve_cache->write_linha(id, content); // increve o novo conteudo na cache  */  
 	}
 }
 

@@ -34,6 +34,8 @@ public:
 	int getSet();
 	/**@brief seta uma linha para um determinado set*/
 	void Set(int set);
+
+	bool write_linha( int id_palavra, int content);
 };
 
 #endif

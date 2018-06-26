@@ -65,7 +65,7 @@ public:
 	void sub_LRU(shared_ptr<Bloco> NovaLinha);
 	/**@brief decrementa todos os referencial que estão na cache */
 	void lessAllReferencial();
-	/**@return retorna qual o problo da cache tem o mento endereço */
+	/**@return retorna qual o bloco da cache tem o mento endereço */
 	int menorReferencial();
 	
 };
