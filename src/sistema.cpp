@@ -160,6 +160,7 @@ void  Sistema::executar(char * comando, int endereco)
 void Sistema::write (int content )
 {
 	/*Gerador e número aleatórios, para descobrir em que endereço do bloco substituir o conteudo */
+	/*
 	std::random_device rd;
 	std::default_random_engine gen(rd());
 	std::uniform_int_distribution<> dis(0, tam_bloco-1);
@@ -177,13 +178,15 @@ void Sistema::write (int content )
 		cout << "---------------------\n";
 		int write_at = cache_l1->menorReferencial(); // Será inscrito no bloco com o menor referencial 
 		cout << "Enntrou no método write valor de write_at " << cache_l1->menorReferencial() << endl;
-		/*
+		
 		std::shared_ptr<Linha> inscreve_cache = cache_l1->linhas[write_at];// ponteiro para linha da cache que será inscriata
 		write_at = inscreve_cache->getNumeroBloco(); // id do bloco a ser inscrito na memória principal 
 		
 		std::shared_ptr<Bloco> inscreve_memoria = memoriaPrincipal->vetorBlocos[write_at]; // ponteiro para o bloco na memória que será inscrito
 		inscreve_memoria->write(id, content); // inscreve o novo conteudo na memória                                                                             
-        inscreve_cache->write_linha(id, content); // increve o novo conteudo na cache  */  
+        inscreve_cache->write_linha(id, content); // increve o novo conteudo na cache  
 	}
+	*/
+	cout << " ** Não foi possivel implementar o método write a tempo da entrega da ativiade \n";
 }
 

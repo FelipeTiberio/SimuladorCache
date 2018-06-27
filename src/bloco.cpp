@@ -100,7 +100,6 @@ bool Bloco::operator==( Bloco &b)
 	int n = this->palavra.size();
 	for( int i = 0; i < n ; i++)
 	{
-		//	std::cout << (*(b.palavra[i]));
 		if( this->palavra[0]->getEndereco() == b.palavra[i]->getEndereco())
 			return true;
 	}

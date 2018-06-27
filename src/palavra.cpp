@@ -39,7 +39,6 @@ int Palavra::getId_bloco()
 
 int Palavra::getEndereco()
 {
-	//std::cout << " o endereco é " << endereco << "\n";
 	return endereco;
 }
 

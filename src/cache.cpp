@@ -228,7 +228,6 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 		int aux = this->linhas[0]->getReferencia(); // Guarda o menor referencial da primeira linha da cache 
 		for(int i=0; i < num_linhas; i++) // percorre todas as linhas da cache
 		{
-			//cout << "linhas["<< i << "] e getReferencia() = "<< linhas[i]->getReferencia() << " aux = " << aux << endl; // teste
 			if(this->linhas[i]->getReferencia() < aux) // verifica se há um referencial menor o referencial que está na primeira linha 
 			{
 				menorIndice = i;
@@ -242,7 +241,6 @@ void Cache::sub_LRU(shared_ptr<Bloco> NovaLinha)
 
 	}else if( politica_map == 3){
 
-		//int LinhasInSet = (num_linhas/num_conjunto); /* Quantidade de linhas em um conjunto */
 		int colocarNoSet = (NovaLinha->palavra[0]->getId_bloco() % num_conjunto); /* Em que conjunto colocar */
 		id_circula++;
 		int colocarNalinha = (colocarNoSet + colocarNoSet)  ;
@@ -277,8 +275,6 @@ int Cache::menorReferencial()
 
 	for( int i = 0 ; i < (num_linhas); i++ )
 	{
-		//cout << " O valode de menor é " << menor << endl;
-		//cout << " linhas [" << i << "] = " << linhas[i]->getReferencia() << endl;
 		if(menor > linhas[i]->getReferencia())
 		{
 			menor = linhas[i]->getReferencia();
